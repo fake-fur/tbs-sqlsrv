@@ -25,8 +25,8 @@
  * ->insert($sql)                 Execute an insert query and return the insert ID
  * ->fetch_assoc($stmt)           Return the next row of the statment of false if there are no more rows.
  * ->get_int($sql)                Execute a simple query that returns an integer value
- * ->get_string($sql)		      Execute a simple query that returns a string value
- * ->get_row($sql)			      Execute a simple query that returns a whole row as an associative array
+ * ->get_string($sql)             Execute a simple query that returns a string value
+ * ->get_row($sql)                Execute a simple query that returns a whole row as an associative array
  * ->p_get_row($sql, $params)     Execute a query with parameters and return a whole row as an associative array.
  * 
  */
