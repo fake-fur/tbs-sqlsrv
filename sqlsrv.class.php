@@ -17,14 +17,17 @@
  * $tbs->MergeBlock('b', $sqlSrv, "SELECT id, name FROM table1 ORDER BY id");
  *
  * Synopsis for database connectivity:
- * ->close()                  Close a database connection and any open statment handle
- * ->query($sql)              Execute the query and return a statement
- * ->insert($sql)             Return the first value returned by Sql Server
- * ->fetch_assoc($stmt)       Return the next row of the statment of false if there is no mor row.
- * ->get_int($sql)            
- * ->get_string($sql)
- * ->get_row($sql)
- * ->p_get_row($sql, $params) Return a single row from and SQL query and a set of parameters.
+ * ->tbsdb_*                      These functions are called by TBS and must remain as-is
+ *
+ * These functions are convenience helper functions that you can safely remove should you wish to do so
+ * ->close()                      Close a database connection and any open statment handle
+ * ->query($sql)                  Execute a simple query and return a statement
+ * ->insert($sql)                 Execute an insert query and return the insert ID
+ * ->fetch_assoc($stmt)           Return the next row of the statment of false if there are no more rows.
+ * ->get_int($sql)                Execute a simple query that returns an integer value
+ * ->get_string($sql)		      Execute a simple query that returns a string value
+ * ->get_row($sql)			      Execute a simple query that returns a whole row as an associative array
+ * ->p_get_row($sql, $params)     Execute a query with parameters and return a whole row as an associative array.
  * 
  */
  
