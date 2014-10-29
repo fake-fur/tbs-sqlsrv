@@ -20,7 +20,7 @@
  * ->tbsdb_*                      These functions are called by TBS and must remain as-is
  *
  * These functions are convenience helper functions that you can safely remove should you wish to do so
- * ->close()                      Close a database connection and any open statment handle
+ * ->free()                       Free the statment handle if not null
  * ->query($sql)                  Execute a simple query and return a statement
  * ->insert($sql)                 Execute an insert query and return the insert ID
  * ->fetch_assoc($stmt)           Return the next row of the statment of false if there are no more rows.
@@ -46,6 +46,11 @@ class tbsDbSqlServer
 		if ($this->dbh === false){
 			return false;
 		}
+	}
+
+	public function __destruct()
+	{
+		sqlsrv_close($this->dbh);
 	}
 
 /*************************************************************************************
@@ -83,13 +88,12 @@ class tbsDbSqlServer
 	these are general functions i find useful but can be removed if you wish
 **************************************************************************************/
 
-	// close a database connection and any open statment handle
-	public function close($stmt = null)
+	// free statment handle if not null
+	public function free($stmt = null)
 	{
 		if (!is_null($stmt)){
 			sqlsrv_free_stmt($stmt);
 		}
-		sqlsrv_close($this->dbh);
 	}
 
 	// run a simple query and return the stmt resource ready for fetching data if required
