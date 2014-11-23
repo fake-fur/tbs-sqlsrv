@@ -164,8 +164,8 @@ class tbsDbSqlServer
 	{
 		// have to convert each param into a reference to a param
 		$prep_params = array();
-		foreach ($params as $param){
-			$prep_params[] = &$param;
+		for ($x = 0; $x < count($params); $x++){
+			$prep_params[] = &$params[$x];
 		}
 
 		$stmt = sqlsrv_prepare($this->dbh,$sql,$prep_params);
@@ -176,6 +176,22 @@ class tbsDbSqlServer
 			return false;
 		}
 		return sqlsrv_fetch_array($stmt,SQLSRV_FETCH_ASSOC);
+	}
+
+	// general prepared statment query
+	public function p_query($sql,$params)
+	{
+		$prep_params = array();
+		for ($x = 0; $x < count($params); $x++){
+			$prep_params[] = &$params[$x];
+		}
+
+		$stmt = sqlsrv_prepare($this->dbh,$sql,$prep_params);
+		if ($stmt === false){
+			return false;
+		}
+
+		return sqlsrv_execute($stmt);
 	}
 
 }
