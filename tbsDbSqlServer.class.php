@@ -135,7 +135,7 @@ class tbsDbSqlServer
 			return 0;
 		}
 		$row = sqlsrv_fetch_array($stmt,SQLSRV_FETCH_NUMERIC);
-		return settype($row[0],"integer");
+		return intval($row[0]);
 	}
 
 	// get a string value from database using a simple query
